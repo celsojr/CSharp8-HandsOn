@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>CSharp8._0</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+</Project>
