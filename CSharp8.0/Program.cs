@@ -5,7 +5,7 @@ using static System.Console;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
         var subscribers = Service.GetSubscribersAsync();
         var names = GetNames(subscribers);
@@ -33,7 +33,6 @@ class Program
     //        : $"{p.FirstName} {p.MiddleName[0]} {p.LastName}";
     //}
 
-    // Still does not work in the fisrt preview 1.1
     static string GetName(Person p)
     {
         return (p.FirstName, p.MiddleName, p.LastName) switch
@@ -73,22 +72,22 @@ class Person
 
 class Service
 {
+    private static readonly Person[] people =
+    {
+        new Person("Carl", "Scott", "Campbell"),
+        new Person("Neal", "M", "Campbell"),
+        new Person("Dustin", "Campbell"),
+        new Person("Miguel", "de Icaza")
+    };
+
+    // Still does not work in the fisrt preview 2.0
     //private static Person[] people =
     //{
-    //    new Person("Carl", "Scott", "Campbell"),
-    //    new Person("Neal", "M", "Campbell"),
-    //    new Person("Dustin", "Campbell"),
-    //    new Person("Miguel", "de Icaza")
+    //    new ("Carl", "Scott", "Campbell"),
+    //    new ("Neal", "M", "Campbell"),
+    //    new ("Dustin", "Campbell"),
+    //    new ("Miguel", "de Icaza")
     //};
-
-    // Still does not work in the fisrt preview 1.1
-    private static Person[] people =
-    {
-        new ("Carl", "Scott", "Campbell"),
-        new ("Neal", "M", "Campbell"),
-        new ("Dustin", "Campbell"),
-        new ("Miguel", "de Icaza")
-    };
 
     public static IEnumerable<Person> GetSubscribers()
     {
@@ -108,8 +107,8 @@ class Service
 interface IILooger
 {
     void Log(LogLevel level, string message);
-    // Still does not work in the fisrt preview 1.1
-    void Log(System.Exception ex) => Log(LogLevel.Error, ex.ToString);
+    // Still does not work in the fisrt preview 2.0
+    //void Log(System.Exception ex) => Log(LogLevel.Error, ex.ToString);
 }
 
 class ConsoleLogger : IILooger
@@ -119,5 +118,5 @@ class ConsoleLogger : IILooger
 
 class LogLevel
 {
-    const string Error = "Error";
+    const string Error = nameof(Error);
 }
